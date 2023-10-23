@@ -5,6 +5,7 @@ import requests
 from io import StringIO
 from flask import Flask
 from flask import request
+import json
 
 def crear_app():
 
@@ -44,6 +45,6 @@ def crear_app():
             año = int(anio)
             mes = int(mes)
             valor = model.predict([[año, mes]])
-            return "El valor de la UF para el año {} y mes {} es: {}".format(año, mes, valor[0])
+            return json.dumps({"valor": valor[0]})
 
     return app
